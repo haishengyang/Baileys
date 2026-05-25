@@ -748,14 +748,15 @@ export const makeChatsSocket = (config: SocketConfig) => {
 			me && (normalizedJid === jidNormalizedUser(me.id) || (me.lid && normalizedJid === jidNormalizedUser(me.lid)))
 		let content: BinaryNode[] | undefined = baseContent
 
-		if (serverProps.profilePicPrivacyToken && isUserJid && !isSelf) {
-			content = await buildTcTokenFromJid({
-				authState,
-				jid: normalizedJid,
-				baseContent,
-				getLIDForPN
-			})
-		}
+		//todo 临时解决部分头像无法下载问题
+		// if (serverProps.profilePicPrivacyToken && isUserJid && !isSelf) {
+		// 	content = await buildTcTokenFromJid({
+		// 		authState,
+		// 		jid: normalizedJid,
+		// 		baseContent,
+		// 		getLIDForPN
+		// 	})
+		// }
 
 		jid = jidNormalizedUser(jid)
 		const result = await query(
